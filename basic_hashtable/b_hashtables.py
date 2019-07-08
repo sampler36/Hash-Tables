@@ -15,7 +15,10 @@ class Pair:
 # '''
 class BasicHashTable:
     def __init__(self, capacity):
-        pass
+        # max length of hash table
+        self.capacity = capacity
+        # underlying data sructure
+        self.storage = [None] * capacity
 
 
 # '''
@@ -67,3 +70,4 @@ def Testing():
 
 
 Testing()
+
