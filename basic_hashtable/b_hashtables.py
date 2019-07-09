@@ -29,7 +29,7 @@ def hash(string, max):
     hash = 5381
     for x in string:
         hash = (( hash << 5) + hash) + ord(x)
-    return hash & 0xFFFFFFFF
+    return hash % max
 
     
 
@@ -40,7 +40,9 @@ def hash(string, max):
 # If you are overwriting a value with a different key, print a warning.
 # '''
 def hash_table_insert(hash_table, key, value):
-    hash_table.append((key, value))
+    # hash_table.append((key, value))
+    hash_key = hashing_func(key)
+    hash_table[hash_key] = value 
 
 
 
