@@ -40,6 +40,18 @@ def hash(string, max):
 # '''
 def hash_table_insert(hash_table, key, value):
     pass
+    # index = hash(key, len(hash_table.storage))
+    #     # create a new pair using key and value
+    #     pair = Pair(key, value)
+
+    #     stored_pair = hash_table.storage[index]
+
+    #     if stored_pair is not None:
+    #         if stored_pair.key != key:
+    #             print(f"Warning: Overwriteing value {stored_pair.key} / {stored_pair.value} with {pair.key} / {pair.value}")
+        
+    #     # write the pair to the hash_table.storage at the index
+    #     hash_table.storage[index] = pair 
 
 
 # '''
@@ -49,6 +61,14 @@ def hash_table_insert(hash_table, key, value):
 # '''
 def hash_table_remove(hash_table, key):
     pass
+    #     # get the index via hash function
+    # index = hash(key, len(hash_table.storage))
+    # #   if storage at index is empty print ERROR
+    # if (hash_table.storage[index] is None or hash_table.storage[index].key != key):
+    #     print(f"Unable to retrieve key {key}")
+    # else:
+    #     hash_table.storage[index] = None
+
 
 
 # '''
@@ -58,6 +78,15 @@ def hash_table_remove(hash_table, key):
 # '''
 def hash_table_retrieve(hash_table, key):
     pass
+    #   # get the index via the hash function
+    # index = hash(key, len(hash_table.storage))
+
+    # # if the storage at index is empty or the key can not be found. print error
+    # if (hash_table.storage[index] is None or hash_table.storage[index].key != key):
+    #     print(f"Unable to retrieve entry with the key: {key}")
+    #     return None
+    # # return value at index in storage
+    # return hash_table.storage[index].value
 
 
 # '''
