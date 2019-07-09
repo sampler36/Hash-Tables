@@ -16,8 +16,11 @@ class LinkedPair:
 # Resizing hash table
 # '''
 class HashTable:
-    def __init__(self, capacity):
-        pass
+     def __init__(self, capacity):
+        # max length of hash table
+        self.capacity = capacity
+        # underlying data sructure
+        self.storage = [None] * capacity
 
 
 # '''
