@@ -58,14 +58,19 @@ def hash_table_insert(hash_table, key, value):
     hash_table.storage[index] = pair 
 
 
-
 # '''
 # Fill this in.
 
 # If you try to remove a value that isn't there, print a warning.
 # '''
 def hash_table_remove(hash_table, key):
-    pass
+    # get the index via hash function
+      index = hash(key, len(hash_table.storage))
+    #   if storage at index is empty print ERROR
+    if (hash_table.storage[index] is None or hash_table.storage[index].key != key):
+        print(f"Unable to retrieve key {key}")
+    else:
+        hash_table.storage[index] = None
 
 
 # '''
