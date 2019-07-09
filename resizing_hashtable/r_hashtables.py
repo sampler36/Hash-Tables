@@ -93,10 +93,11 @@ def hash_table_retrieve(hash_table, key):
 # Fill this in
 # '''
 def hash_table_resize(hash_table):
-     new_hash_table = []
-        new_size = 2 * hash_table.size
-        for i in range(hash_table.size*2):
-            new_hash_table .append(None)
+       #not yet tested
+    new_hash_table = []
+    new_size = 2 * hash_table.size
+    for i in range(hash_table.size*2):
+        new_hash_table .append(None)
         for i in range(hash_table.size):
             if hash_table.value[i] != None:
                hash_table.add_internal(hash_table.value[i][0], hash_table.value[i][1], new_hash_table, new_size, True)
