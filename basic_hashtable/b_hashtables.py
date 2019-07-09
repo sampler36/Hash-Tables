@@ -40,9 +40,22 @@ def hash(string, max):
 # If you are overwriting a value with a different key, print a warning.
 # '''
 def hash_table_insert(hash_table, key, value):
-    # hash_table.append((key, value))
-    hash_key = hashing_func(key)
-    hash_table[hash_key] = value 
+    # # hash_table.append((key, value))
+    # hash_key = hashing_func(key)
+    # hash_table[hash_key] = value 
+    # get index via hash function
+    index = hash(key, len(hash_table.storage))
+    # create a new pair using key and value
+    pair = Pair(key, value)
+
+    stored_pair = hash_table.storage[index]
+
+    if stored_pair is not None:
+        if stored_pair.key != key:
+            print(f"Warning: Overwriteing value {stored_pair.key} / {stored_pair.value} with {pair.key} / {pair.value}")
+    
+    # write the pair to the hash_table.storage at the index
+    hash_table.storage[index] = pair 
 
 
 
