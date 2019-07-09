@@ -79,7 +79,15 @@ def hash_table_remove(hash_table, key):
 # Should return None if the key is not found.
 # '''
 def hash_table_retrieve(hash_table, key):
-    pass
+     # get the index via the hash function
+    index = hash(key, len(hash_table.storage))
+
+    # if the storage at index is empty or the key can not be found. print error
+    if (hash_table.storage[index] is None or hash_table.storage[index].key != key):
+        print(f"Unable to retrieve entry with the key: {key}")
+        return None
+    # return value at index in storage
+    return hash_table.storage[index].value
 
 
 def Testing():
