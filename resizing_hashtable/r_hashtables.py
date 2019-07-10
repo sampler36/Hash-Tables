@@ -39,19 +39,18 @@ def hash(string, max):
 # Hint: Used the LL to handle collisions
 # '''
 def hash_table_insert(hash_table, key, value):
-    pass
-    # index = hash(key, len(hash_table.storage))
+    index = hash(key, len(hash_table.storage))
     #     # create a new pair using key and value
-    #     pair = Pair(key, value)
+        pair = Pair(key, value)
 
-    #     stored_pair = hash_table.storage[index]
+        stored_pair = hash_table.storage[index]
 
-    #     if stored_pair is not None:
-    #         if stored_pair.key != key:
-    #             print(f"Warning: Overwriteing value {stored_pair.key} / {stored_pair.value} with {pair.key} / {pair.value}")
+        if stored_pair is not None:
+            if stored_pair.key != key:
+                print(f"Warning: Overwriteing value {stored_pair.key} / {stored_pair.value} with {pair.key} / {pair.value}")
         
-    #     # write the pair to the hash_table.storage at the index
-    #     hash_table.storage[index] = pair 
+        # write the pair to the hash_table.storage at the index
+        hash_table.storage[index] = pair 
 
 
 # '''
