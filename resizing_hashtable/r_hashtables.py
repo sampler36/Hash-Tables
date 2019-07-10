@@ -67,6 +67,46 @@ def hash_table_remove(hash_table, key):
     #     print(f"Unable to retrieve key {key}")
     # else:
     #     hash_table.storage[index] = None
+     hashedKey = hash(key, hash_table.capacity)
+    # set the index 
+    index = hash_table.storage[hashedKey]
+    # check if there's anything at the index
+    if not index:
+        print(f'Warning: the key you're trying to remove doesnt exist')
+    else:
+        # loop through the pairs until we find the key
+        current_pair = hash_table.storage[hashedKey]
+        # check if it's the first pair in the list
+        if current_pair.key == key:
+            # check if it's the only pair at that index
+            if current_pair.next == None:
+                hash_table.storage[hashedKey] = None
+            # else set the new starter pair
+            else:
+                hash_table.storage[hashedKey] = current_pair.next
+            return None
+        # loop through the pairs if it's not the first pair
+        while current_pair.next:
+            # check if the destination pair is at the next position
+            if current_pair.next == key:
+                # Assign the destination pair to a variable
+                desitination_pair = current_pair.next
+                # if the destination pair has a next pair, set that to the current pair
+                if destination_pair.next:
+                    current_pair.next = destination_pair.next
+                # else set the current next pair to None
+                else:
+                    current_pair.next = None
+                return None
+            # set the next pair as current_pair.next for loop continuous
+            current_pair = current_pair.next
+        # check if the last pair in the list matches the key
+        if current_pair.key == key:
+            # set the key to 0 
+            current_pair.key = None
+        else:
+            print(f'Warning: the key you're trying to remove doesnt exist')
+
 
 
 
@@ -76,33 +116,34 @@ def hash_table_remove(hash_table, key):
 # Should return None if the key is not found.
 # '''
 def hash_table_retrieve(hash_table, key):
-    pass
-    #   # get the index via the hash function
-    # index = hash(key, len(hash_table.storage))
+      # get the index via the hash function
+    index = hash(key, len(hash_table.storage))
 
-    # # if the storage at index is empty or the key can not be found. print error
-    # if (hash_table.storage[index] is None or hash_table.storage[index].key != key):
-    #     print(f"Unable to retrieve entry with the key: {key}")
-    #     return None
-    # # return value at index in storage
-    # return hash_table.storage[index].value
+    # if the storage at index is empty or the key can not be found. print error
+    if (hash_table.storage[index] is None or hash_table.storage[index].key != key):
+        print(f"Unable to retrieve entry with the key: {key}")
+        return None
+    # return value at index in storage
+    return hash_table.storage[index].value
 
 
 # '''
 # Fill this in
 # '''
 def hash_table_resize(hash_table):
-       #not yet tested
-    new_hash_table = []
-    new_size = 2 * hash_table.size
-    for i in range(hash_table.size*2):
-        new_hash_table .append(None)
-        for i in range(hash_table.size):
-            if hash_table.value[i] != None:
-               hash_table.add_internal(hash_table.value[i][0], hash_table.value[i][1], new_hash_table, new_size, True)
-        hash_table.value = new_hash_table
-        hash_table.size = new_size
-
+    # double the capacity
+    newCapacity = hash_table.capacity * 2
+    # initialize new list for storage
+    newStorage = [None] * newCapacity
+    # copy over the elements
+    for i in range(len(hash_table.storage)):
+        newStorage[i] = hash_table.storage[i] 
+    # set new storage and capacity
+    hash_table.storage = newStorage
+    hash_table.capacity = newCapacity
+    # return updated hash table
+    return hash_table
+      
 
 def Testing():
     ht = HashTable(2)
