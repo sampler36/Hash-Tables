@@ -3,7 +3,7 @@
 # '''
 # Linked List hash table key/value pair
 # '''
-class Pair:
+class LinkedPair:
     def __init__(self, key, value):
         self.key = key
         self.value = value
@@ -39,18 +39,30 @@ def hash(string, max):
 # Hint: Used the LL to handle collisions
 # '''
 def hash_table_insert(hash_table, key, value):
-    index = hash(key, len(hash_table.storage))
+     # create a new pair using key and value
+    linkedPair = LinkedPair(key, value)
 
-    #     # create a new pair using key and value
-    pair = Pair(key, value)
-    stored_pair = hash_table.storage[index]
-    if stored_pair is not None:
-        if stored_pair.key != key:
-            print(f"Warning: Overwriteing value {stored_pair.key} / {stored_pair.value} with {pair.key} / {pair.value}")
-        
-        # write the pair to the hash_table.storage at the index
-    hash_table.storage[index] = pair 
+    # get the index via the hash function
+    index = hash(linkedPair.key, hash_table.capacity)
 
+     # check if the current storage already contain a Linked List or Pair
+    if hash_table.storage[index]:
+        # loop through the linked pairs until we get to a current key or the end pair
+        current_pair = hash_table.storage[index]
+        while current_pair.next:
+            if current_pair.key == key:
+                current_pair.value = value
+                return None
+            # set new next pair as current_pair
+            current_pair = current_pair.next
+        # check if the last pair in the list matches the key
+        if current_pair.key == key:
+            current_pair.value = value
+        # add the linked pair as the next item
+        else:
+            current_pair.next = linkedPair
+    else:
+        hash_table.storage[index] = linkedPair
 
 # '''
 # Fill this in.
