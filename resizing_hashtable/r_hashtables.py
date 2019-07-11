@@ -3,7 +3,7 @@
 # '''
 # Linked List hash table key/value pair
 # '''
-class LinkedPair:
+class Pair:
     def __init__(self, key, value):
         self.key = key
         self.value = value
@@ -40,17 +40,16 @@ def hash(string, max):
 # '''
 def hash_table_insert(hash_table, key, value):
     index = hash(key, len(hash_table.storage))
+
     #     # create a new pair using key and value
-        pair = Pair(key, value)
-
-        stored_pair = hash_table.storage[index]
-
-        if stored_pair is not None:
-            if stored_pair.key != key:
-                print(f"Warning: Overwriteing value {stored_pair.key} / {stored_pair.value} with {pair.key} / {pair.value}")
+    pair = Pair(key, value)
+    stored_pair = hash_table.storage[index]
+    if stored_pair is not None:
+        if stored_pair.key != key:
+            print(f"Warning: Overwriteing value {stored_pair.key} / {stored_pair.value} with {pair.key} / {pair.value}")
         
         # write the pair to the hash_table.storage at the index
-        hash_table.storage[index] = pair 
+    hash_table.storage[index] = pair 
 
 
 # '''
@@ -67,12 +66,12 @@ def hash_table_remove(hash_table, key):
     #     print(f"Unable to retrieve key {key}")
     # else:
     #     hash_table.storage[index] = None
-     hashedKey = hash(key, hash_table.capacity)
+    hashedKey = hash(key, hash_table.capacity)
     # set the index 
     index = hash_table.storage[hashedKey]
     # check if there's anything at the index
     if not index:
-        print(f'Warning: the key you're trying to remove doesnt exist')
+        print(f'Warning: the key you are trying to remove doesnt exist')
     else:
         # loop through the pairs until we find the key
         current_pair = hash_table.storage[hashedKey]
@@ -105,7 +104,7 @@ def hash_table_remove(hash_table, key):
             # set the key to 0 
             current_pair.key = None
         else:
-            print(f'Warning: the key you're trying to remove doesnt exist')
+            print(f'Warning: the key you are trying to remove doesnt exist')
 
 
 
